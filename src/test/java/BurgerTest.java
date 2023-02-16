@@ -107,6 +107,7 @@ public class BurgerTest {
     public void checkMoveIngredientToChangeIngredientPosition(){
 
         Burger burger = new Burger();
+
         Ingredient ingredientFilling = new Ingredient(FILLING, "dinosaur", 100);
         Ingredient ingredientSauce = new Ingredient(SAUCE, "chili sauce", 300);
 
@@ -116,18 +117,22 @@ public class BurgerTest {
         IngredientType expectedIngredientType = FILLING;
         IngredientType actualIngredientType = burger.ingredients.get(0).type;
 
+        //Index of expectedIngredientName is 1;
         String expectedIngredientName = "chili sauce";
-        String actualIngredientName = burger.ingredients.get(1).name;
 
         float expectedPrice = 300;
         float actualPrice = burger.ingredients.get(1).price;
 
+        //Index of "dinosaur" is 0
+        String expectedIndexName = "dinosaur";
+
         burger.moveIngredient(0, 1);
 
-
+        //Prove that 'dinosaur' moved to index 1
+        assertEquals(expectedIndexName, burger.ingredients.get(1).name);
         assertEquals(expectedIngredientType, actualIngredientType);
-        assertEquals(expectedIngredientName, actualIngredientName);
+        //Prove that 'chili sauce' moved to index 0
+        assertEquals(expectedIngredientName, burger.ingredients.get(0).name);
         assertEquals(expectedPrice, actualPrice, 0.0f);
     }
-
 }
